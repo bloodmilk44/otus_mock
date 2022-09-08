@@ -7,7 +7,7 @@ update_add_imposter = {
                 {
                     "equals": {
                         "method": "POST",
-                        "path": "/update/add"
+                        "path": "/api/breeds/list/all"
                     }
                 }
             ],
@@ -21,8 +21,6 @@ update_add_imposter = {
                             "data": {
                                 "name": "test",
                                 "surname": "test",
-                                "grade": 100,
-                                "sex": "test"
                             }
                         }
                     }

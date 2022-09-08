@@ -2,20 +2,18 @@ import requests
 import json
 
 """
-Актуальная команда для запуска:
+Актуальная команда для запуска (прописать нужные порты):
 docker run -p 2525:2525 -p 8080:8080 -p 8081:8081 bbyars/mountebank start
 """
 
 # точки с валидными координатами
 valid_points = {
-    "point_1": (55.99, 37.20),
-    "point_2": (55.99, 37.18),
-    "point_3": (55.98, 37.20),
+    "all": "good"
 }
 
 # формируем конфигурацию imposter'a
 imposter_cfg = {
-    "port": 10343,
+    "port": 8080,
     "protocol": "http",
     "stubs": [
         {
@@ -23,7 +21,7 @@ imposter_cfg = {
                 {
                     "equals": {
                         "method": "GET",
-                        "path": "/api/points"
+                        "path": "/api/breeds/list/all"
                     }
                 }
             ],

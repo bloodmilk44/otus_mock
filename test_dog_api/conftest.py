@@ -1,14 +1,14 @@
 import pytest
 import requests
 import json
-
+from imposters import update_add_imposter
 
 # Test API: https://dog.ceo/api/breeds
 def pytest_addoption(parser):
     parser.addoption(
         "--url",
         action="store",
-        default="https://dog.ceo/api",
+        default="https://dog.ceo",
         help="This is request url"
     )
 
@@ -17,9 +17,10 @@ def pytest_addoption(parser):
 def base_api_url(request):
     return request.config.getoption("--url")
 
-@pytest.fixture
-def set_mock(base_url):
-    if "localhost" in base_url:
+
+@pytest.fixture(scope="session")
+def set_mock(base_api_url):
+    if "localhost" in base_api_url:
 
         # We set imposter to mountebank
         requests.request(
